@@ -31,7 +31,7 @@ The only source for business facts on websitebuilderadvice.net. Every fact below
 
 **Role of this domain:** the owner chose the commercial GeoHub (2026-10-07). websitebuilderadvice.net is the Sydney-wide entry point: master hub → regional hubs → studio-site nodes, which hold the suburb pages. It is the network's GBP-backed property, once the GBP name matches (see the flags list).
 
-**Known overlap:** `/web-design-sydney/` targets the same intent as stgeorgewebdesign.com.au/sydney/. The owner accepted this when choosing the commercial GeoHub. Decide which URL keeps "web design Sydney" before both are pushed. See the flags list.
+**Known overlap:** the homepage (`/`, the Sydney hub) targets the same intent as stgeorgewebdesign.com.au/sydney/. The owner accepted this when choosing the commercial GeoHub. Decide which URL keeps "web design Sydney" before both are pushed. See the flags list.
 
 ## 3. Services and prices (live copy, stgeorgewebdesign.com.au home)
 

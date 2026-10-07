@@ -50,11 +50,11 @@ const ext = (href, text) => `<a href="${href}" rel="noopener">${text}</a>`;
 
 // Pages ---------------------------------------------------------------------
 const P = {
-  sydney: { path: "/web-design-sydney/", nav: "Sydney", label: "Sydney" },
-  stgeorge: { path: "/web-design-sydney/st-george-bayside/", nav: "St George & Bayside", label: "St George & Bayside" },
-  bankstown: { path: "/web-design-sydney/canterbury-bankstown/", nav: "Canterbury-Bankstown", label: "Canterbury-Bankstown" },
-  sutherland: { path: "/web-design-sydney/sutherland-shire/", nav: "Sutherland Shire", label: "Sutherland Shire" },
-  cbd: { path: "/web-design-sydney/cbd-inner-city/", nav: "CBD & Inner City", label: "CBD & Inner City" },
+  sydney: { path: "/", nav: "Sydney", label: "Sydney" },
+  stgeorge: { path: "/st-george-bayside/", nav: "St George & Bayside", label: "St George & Bayside" },
+  bankstown: { path: "/canterbury-bankstown/", nav: "Canterbury-Bankstown", label: "Canterbury-Bankstown" },
+  sutherland: { path: "/sutherland-shire/", nav: "Sutherland Shire", label: "Sutherland Shire" },
+  cbd: { path: "/cbd-inner-city/", nav: "CBD & Inner City", label: "CBD & Inner City" },
 };
 const ORDER = ["sydney", "stgeorge", "bankstown", "sutherland", "cbd"];
 const link = (key, text) => `<a href="${P[key].path}">${text}</a>`;
@@ -698,7 +698,7 @@ const PAGES = [
       { q: "Does my clinic or shop website need to meet accessibility or privacy rules?", a: A_RULES(false, false) },
     ],
     aboutH2: "Your Hurstville web designer",
-    aboutLocal: `${BIZ.name} is based in Hurstville, so St George is home ground. You can read more about how projects run on the ${"<a href=\"/web-design-sydney/#about\">Sydney hub</a>"}.`,
+    aboutLocal: `${BIZ.name} is based in Hurstville, so St George is home ground. You can read more about how projects run on the ${"<a href=\"/#about\">Sydney hub</a>"}.`,
     gbp: true,
     workingArea: "across St George and Bayside",
     formArea: "St George & Bayside",
@@ -762,7 +762,7 @@ const PAGES = [
       { q: "Do small Bankstown businesses need a privacy policy on their website?", a: A_RULES(false, false) },
     ],
     aboutH2: "Who builds your Canterbury-Bankstown website",
-    aboutLocal: `Marcelo also runs Web Design Bankstown, which holds the suburb-by-suburb pages for this area. Read more about how projects run on the <a href="/web-design-sydney/#about">Sydney hub</a>.`,
+    aboutLocal: `Marcelo also runs Web Design Bankstown, which holds the suburb-by-suburb pages for this area. Read more about how projects run on the <a href="/#about">Sydney hub</a>.`,
     gbp: false,
     workingArea: "across Canterbury-Bankstown",
     formArea: "Canterbury-Bankstown",
@@ -823,7 +823,7 @@ const PAGES = [
       { q: "Does a Shire clinic website need to meet privacy rules?", a: A_RULES(false, true) },
     ],
     aboutH2: "Who builds your Sutherland Shire website",
-    aboutLocal: `Marcelo also runs Sutherland Shire Website Design, the Shire studio site where the testimonials on this page were first published. Read more about how projects run on the <a href="/web-design-sydney/#about">Sydney hub</a>.`,
+    aboutLocal: `Marcelo also runs Sutherland Shire Website Design, the Shire studio site where the testimonials on this page were first published. Read more about how projects run on the <a href="/#about">Sydney hub</a>.`,
     gbp: false,
     workingArea: "across the Sutherland Shire",
     formArea: "Sutherland Shire",
@@ -892,7 +892,7 @@ const PAGES = [
       { q: "Does a city business website need to meet accessibility and privacy rules?", a: A_RULES(true, false) },
     ],
     aboutH2: "Who builds your city website",
-    aboutLocal: `${BIZ.name} is based in Hurstville and works with CBD and inner-city businesses by phone, email and online review. Read more about how projects run on the <a href="/web-design-sydney/#about">Sydney hub</a>.`,
+    aboutLocal: `${BIZ.name} is based in Hurstville and works with CBD and inner-city businesses by phone, email and online review. Read more about how projects run on the <a href="/#about">Sydney hub</a>.`,
     gbp: false,
     workingArea: "across the CBD and inner city",
     formArea: "Sydney CBD & Inner City",
