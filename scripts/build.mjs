@@ -1,4 +1,4 @@
-// Website Builder Advice: Sydney GeoHub generator.
+// Website Builder Sydney: Sydney GeoHub generator.
 // Writes 5 static pages from the data below, then checks them.
 // Run: node scripts/build.mjs   (no dependencies; commit the generated HTML)
 //
@@ -16,7 +16,7 @@ const ORIGIN = "https://websitebuilderadvice.net";
 const BUILD_DATE = "2026-10-07";
 
 const BIZ = {
-  name: "Website Builder Advice",
+  name: "Website Builder Sydney",
   person: "Marcelo Soler",
   role: "Founder, web designer, and local SEO specialist.",
   phone: "0404 084 847",
@@ -24,7 +24,12 @@ const BIZ = {
   email: "start@websitebuilderadvice.net",
   locality: "Hurstville NSW 2220",
   gbp: "https://maps.app.goo.gl/xrakAW4nFD6ReaPy9",
+  abn: "96 492 325 357",
+  abr: "https://abr.business.gov.au/ABN/View?abn=96492325357",
+  legal: "Marcelo Andres Soler (sole trader)",
 };
+// The ABR link sits on the same 2 pages as the GBP link (40% domain cap).
+const abnText = (pg, prefix = "ABN ") => (pg.gbp ? ext(BIZ.abr, prefix + BIZ.abn) : prefix + BIZ.abn);
 
 const SRC_SG = "https://stgeorgewebdesign.com.au/";
 const SRC_SW = "https://sutherlandwebdesign.com.au/";
@@ -172,6 +177,7 @@ function hero(pg) {
         <li>Built in 1 day</li>
         <li>You deal with the builder</li>
         <li>${pg.trustExtra}</li>
+        <li>${abnText(pg)}</li>
       </ul>
     </div>
     <aside class="hero-card" aria-label="Starter website offer"${src(SRC_SG)}>
@@ -389,7 +395,7 @@ function faq(pg) {
 function about(pg) {
   const long = pg.key === "sydney";
   const network = long
-    ? `<p${NEW}>Marcelo also runs the studio sites that cover individual parts of Sydney: St George Web Design, Web Design Bankstown, Sutherland Shire Website Design and FP Web Design in Parramatta. Website Builder Advice is the Sydney-wide hub that joins them. Each one quotes the same prices and the same phone number, because the same person does the work.</p>` : "";
+    ? `<p${NEW}>Marcelo also runs the studio sites that cover individual parts of Sydney: St George Web Design, Web Design Bankstown, Sutherland Shire Website Design and FP Web Design in Parramatta. Website Builder Sydney is the Sydney-wide hub that joins them. Each one quotes the same prices and the same phone number, because the same person does the work.</p>` : "";
   const extra = long ? `
       <h3${src(SRC_SG)}>Process: brief in the morning, website live by end of day</h3>
       <ol class="steps stack"${src(SRC_SG)}>
@@ -421,9 +427,10 @@ function about(pg) {
         <li><span class="k">Based in</span><span>${BIZ.locality}</span></li>
         <li><span class="k">Phone</span><span><a href="tel:${BIZ.tel}">${BIZ.phone}</a></span></li>
         <li><span class="k">Email</span><span><a href="mailto:${BIZ.email}">${BIZ.email}</a></span></li>
-        <li><span class="k">ABN</span><span data-placeholder="ABN">ABN and legal entity name to be supplied by the owner</span></li>
+        <li><span class="k">ABN</span><span>${abnText(pg, "")}</span></li>
+        <li><span class="k">Legal entity</span><span>${BIZ.legal}</span></li>
       </ul>
-      ${pg.gbp ? `<p class="fs-sm after-grid">${ext(BIZ.gbp, "Website Builder Advice on Google Maps")}</p>` : ""}
+      ${pg.gbp ? `<p class="fs-sm after-grid">${ext(BIZ.gbp, "Website Builder Sydney on Google Maps")}</p>` : ""}
     </aside>
   </div>
 </section>`;
@@ -473,9 +480,9 @@ function header(pg) {
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="${P.sydney.path}" aria-label="${BIZ.name}, Sydney web design home">
+    <a class="brand" href="${P.sydney.path}" aria-label="${BIZ.name}, home">
       <span class="brand-mark" aria-hidden="true">WB</span>
-      <span class="brand-name">${BIZ.name}<small>Sydney web design</small></span>
+      <span class="brand-name">${BIZ.name}<small>Freelance web design</small></span>
     </a>
     <nav class="nav" aria-label="Primary"><ul>${items}</ul></nav>
     <div class="header-actions">
@@ -518,7 +525,7 @@ function footer(pg) {
     </div>
     <div class="footer-bottom">
       <p${NEW}>${BIZ.name} acknowledges the Traditional Custodians of the lands across Sydney where we live and work, and pays respect to Elders past and present.</p>
-      <p>© <span id="year">2026</span> ${BIZ.name}. All rights reserved.</p>
+      <p>© <span id="year">2026</span> ${BIZ.name}. ABN ${BIZ.abn}. All rights reserved.</p>
     </div>
   </div>
 </footer>`;
@@ -579,7 +586,7 @@ const A_RULES = (linkWcag, linkOaic) => `<p>Builds use mobile-first layouts, cle
 const PAGES = [
   {
     key: "sydney",
-    title: "Website Design Sydney from $500 | Website Builder Advice",
+    title: "Website Design Sydney from $500 | Website Builder Sydney",
     description: "Freelance website design for Sydney small businesses by Marcelo Soler. Fast, mobile-first sites from $500, built in 1 day. St George, Bankstown, Sutherland Shire and the CBD.",
     pill: "Website design Sydney · Hurstville based",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">Sydney Small Businesses</span>',
@@ -596,7 +603,7 @@ const PAGES = [
     areas: [
       { group: "South", items: [
         { name: link("stgeorge", "Website design for St George &amp; Bayside businesses"), places: "Hurstville · Kogarah · Rockdale · Mascot",
-          text: "Home base for Website Builder Advice. Restaurants and retailers around Forest Road in Hurstville, practices near St George Hospital in Kogarah, and logistics firms near Sydney Airport each need a different kind of site." },
+          text: "Home base for Website Builder Sydney. Restaurants and retailers around Forest Road in Hurstville, practices near St George Hospital in Kogarah, and logistics firms near Sydney Airport each need a different kind of site." },
         { name: link("bankstown", "Website design for Canterbury-Bankstown businesses"), places: "Bankstown · Campsie · Lakemba · Padstow",
           text: "Family businesses, food, clinics and trades from Chapel Road in Bankstown to Beamish Street in Campsie and the Padstow industrial area, where a phone search usually ends in a call." },
         { name: link("sutherland", "Website design for Sutherland Shire businesses"), places: "Cronulla · Miranda · Taren Point · Engadine",
@@ -628,7 +635,7 @@ const PAGES = [
         a: `<p>Usually not. A short brief or a phone call is enough to get started, and the draft is reviewed online before anything goes live. If you would rather talk it through face to face, ask when you call ${BIZ.phone}.</p>` },
       { q: "Is my website accessible and compliant with Australian privacy rules?", a: A_RULES(true, true) },
     ],
-    aboutH2: "About Website Builder Advice",
+    aboutH2: "About Website Builder Sydney",
     aboutLocal: `${BIZ.name} is a freelance web design service based in Hurstville, in Sydney's St George area. It builds websites for trades and service businesses, professional services, builders, health and allied health clinics, and local operators who want to improve their SEO.`,
     gbp: true,
     workingArea: "across Sydney",
@@ -636,11 +643,11 @@ const PAGES = [
   },
   {
     key: "stgeorge",
-    title: "Web Design Hurstville & St George | Website Builder Advice",
+    title: "Web Design Hurstville & St George | Website Builder Sydney",
     description: "Website design for Hurstville, Kogarah, Rockdale and Bayside businesses. Hurstville-based freelancer Marcelo Soler builds fast, mobile-first sites from $500 in 1 day.",
     pill: "Web design St George &amp; Bayside · Hurstville",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">St George &amp; Bayside Businesses</span>',
-    lede: "Website Builder Advice is based in Hurstville. Marcelo Soler builds fast, mobile-first sites for the way St George and Bayside businesses win customers: restaurants and retailers around Forest Road, practices near St George Hospital, and trades and freight firms from Rockdale to Mascot.",
+    lede: "Website Builder Sydney is based in Hurstville. Marcelo Soler builds fast, mobile-first sites for the way St George and Bayside businesses win customers: restaurants and retailers around Forest Road, practices near St George Hospital, and trades and freight firms from Rockdale to Mascot.",
     trustExtra: "Based in Hurstville",
     servicesH2: "Website services for St George and Bayside businesses",
     servicesLead: "The same six services offered across Sydney, ordered here by what local businesses ask for most: a one-page site that gets calls, then pages for each service as the business grows.",
@@ -653,7 +660,7 @@ const PAGES = [
     areas: [
       { group: "Georges River", items: [
         { name: "Hurstville", places: "Forest Rd · Westfield Hurstville · Hurstville station",
-          text: "Hurstville is home base for Website Builder Advice. Restaurants, grocers and professional offices around Forest Road compete for the same searches, so a site needs clear service lists, a phone button that works one-handed and location signals Google can read.",
+          text: "Hurstville is home base for Website Builder Sydney. Restaurants, grocers and professional offices around Forest Road compete for the same searches, so a site needs clear service lists, a phone button that works one-handed and location signals Google can read.",
           links: [svcLink("svc-onepage"), svcLink("svc-seo")] },
         { name: "Kogarah", places: "St George Hospital · Railway Pde",
           text: "Around St George Hospital and Railway Parade, specialists, allied-health practices and accountants need sites that explain each service plainly and make booking or calling easy, with a page for each treatment or practice area.",
@@ -687,7 +694,7 @@ const PAGES = [
       { q: "Can I change my prices or services after the site launches?", a: A_EDIT },
       { q: "Will the site help me show up in Google around Hurstville?", a: A_GOOGLE(" For St George businesses that means naming the suburbs you actually serve, such as Hurstville, Kogarah or Rockdale, in your page headings and copy.") },
       { q: "Do you work with businesses across St George and Bayside, or meet in person?",
-        a: `<p>Website Builder Advice is based in Hurstville and works with businesses across the Georges River and Bayside council areas, from Penshurst and Oatley to Brighton-Le-Sands and Mascot. Most projects run by phone and email. If you would like to meet, ask when you call ${BIZ.phone}.</p>` },
+        a: `<p>Website Builder Sydney is based in Hurstville and works with businesses across the Georges River and Bayside council areas, from Penshurst and Oatley to Brighton-Le-Sands and Mascot. Most projects run by phone and email. If you would like to meet, ask when you call ${BIZ.phone}.</p>` },
       { q: "Does my clinic or shop website need to meet accessibility or privacy rules?", a: A_RULES(false, false) },
     ],
     aboutH2: "Your Hurstville web designer",
@@ -698,7 +705,7 @@ const PAGES = [
   },
   {
     key: "bankstown",
-    title: "Web Design Canterbury-Bankstown | Website Builder Advice",
+    title: "Web Design Canterbury-Bankstown | Website Builder Sydney",
     description: "Website design for Bankstown, Campsie, Lakemba and Padstow businesses. Freelancer Marcelo Soler builds fast, mobile-first sites for food, clinics and trades from $500.",
     pill: "Web design Canterbury-Bankstown",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">Canterbury-Bankstown Businesses</span>',
@@ -762,7 +769,7 @@ const PAGES = [
   },
   {
     key: "sutherland",
-    title: "Web Design Sutherland Shire & Cronulla | Website Builder Advice",
+    title: "Web Design Sutherland Shire & Cronulla | Website Builder Sydney",
     description: "Website design for Cronulla, Miranda, Caringbah and Taren Point businesses. Marcelo Soler builds fast, mobile-first Sutherland Shire websites from $500, built in 1 day.",
     pill: "Web design Sutherland Shire",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">Sutherland Shire Businesses</span>',
@@ -823,7 +830,7 @@ const PAGES = [
   },
   {
     key: "cbd",
-    title: "Web Design Sydney CBD & Inner City | Website Builder Advice",
+    title: "Web Design Sydney CBD & Inner City | Website Builder Sydney",
     description: "Website design for Sydney CBD, Surry Hills, Pyrmont and Haymarket businesses. Freelancer Marcelo Soler builds fast, credible websites from $500, built in 1 day.",
     pill: "Web design Sydney CBD &amp; inner city",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">Sydney CBD &amp; Inner-City Businesses</span>',

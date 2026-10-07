@@ -7,19 +7,21 @@ Settle these before the site goes live. In the HTML, `data-flag="new copy: owner
 1. **Email mailbox.** The form sends to `start@websitebuilderadvice.net`, which doesn't exist yet. Create the mailbox, or name the address to use, before launch. Otherwise briefs are lost.
 2. **Form handler.** The quote form uses a plain `mailto:` action. That works without JavaScript, but it depends on the visitor having an email app. To capture every lead, connect a handler (for example a Cloudflare Worker or Formspree) and update the CSP `form-action` in `_headers`.
 3. **Domain and DNS.** websitebuilderadvice.net doesn't resolve. Canonicals assume `https://websitebuilderadvice.net` (non-www). Confirm what the server and SSL actually serve before launch.
-4. **ABN and legal entity name.** Not published anywhere in the network. The About aside shows a placeholder until they're supplied.
+4. **Register the business name "Website Builder Sydney" with ASIC** if it isn't already. Your ABN is a sole trader ABN in your own name (Marcelo Andres Soler), and trading under any other name requires registration on the Business Names Register. I couldn't check the register from here. The pages show ABN 96 492 325 357 and "Marcelo Andres Soler (sole trader)".
 
 ## Entity consistency (most common way the network gets mismatched NAP)
 
 5. **Six different addresses** across the network: 40 Wisdom St Connells Point (St George schema), Castlereagh St Sydney (St George About), Level 7/169 Castlereagh St (st-george-web-design-sydney repo), 9/13 Wentworth St Greenacre (Bankstown), Pines Parade Gymea (Sutherland), and Suite 558 Church St Parramatta (FP). The GBP pin is on Australia Street, Hurstville. This site shows **"Hurstville NSW 2220" only**. Confirm the GBP street address, then decide what each node should show.
 6. **Second phone number.** St George's schema lists +61290998025. Every visible page uses 0404 084 847.
 7. **www vs non-www on stgeorgewebdesign.com.au.** The root redirects www to non-www, but `/web-design-bankstown/` only resolves on www, and the `/sydney/` canonicals use www. This site links to the final 200 URLs.
-8. **GBP name casing.** The GBP is "Website Builder advice". This site uses "Website Builder Advice". Consider matching the GBP to the site.
+8. **GBP name doesn't match.** The business name is "Website Builder Sydney" (owner, 2026-10-07), but the GBP is named "Website Builder advice". Rename the GBP to "Website Builder Sydney" so the name matches character for character across the site, the GBP and every citation. Google may ask for verification when a profile is renamed.
 9. **`/web-design-sydney/` vs stgeorgewebdesign.com.au/sydney/.** Both target "web design Sydney". Decide which keeps that intent. If it's this domain, retarget or 301 the St George `/sydney/` page.
 10. **Brand relationships stated in public.** The Sydney hub's About says Marcelo runs St George Web Design, Web Design Bankstown, Sutherland Shire Website Design and FP Web Design. Confirm you're happy for that to be public. It's the core DAN corroboration.
 
 ## Claims to confirm
 
+- **ABR postcode.** The ABR lists your main business location as NSW 2218. The pages show Hurstville NSW 2220 (the GBP pin). Both are fine, but update whichever is out of date so they agree.
+- **Not registered for GST.** The prices shown are therefore GST-free. No page says "inc. GST". Revisit if you register.
 11. "18+ years of brand and design experience": from sutherlandwebdesign.com.au/about, used verbatim. Confirm it's still accurate.
 12. "Free hosting included", "Free logo included", "Live in 1 week", "We respond the same business day": live St George copy, used verbatim.
 13. Reuse of the three video testimonial quotes, and of client names and screenshots in the work sections: confirm each client's permission.
@@ -37,7 +39,6 @@ All elements with `data-flag`: hero H1s and ledes, service-area narratives, "Wha
 
 - Local case studies: St George & Bayside, Canterbury-Bankstown, CBD & Inner City.
 - Local testimonials: St George & Bayside, Canterbury-Bankstown, Sutherland Shire, CBD (a written professional-services testimonial).
-- ABN and legal name (every page).
 
 ## Deliberate deviations from SYDNEY-GEOHUB-PROMPT.md
 

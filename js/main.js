@@ -1,4 +1,4 @@
-// Website Builder Advice: mobile menu toggle and footer year.
+// Website Builder Sydney: mobile menu toggle and footer year.
 // Progressive enhancement only; every page works with JavaScript off.
 (function () {
   var toggle = document.querySelector("[data-menu-toggle]");
