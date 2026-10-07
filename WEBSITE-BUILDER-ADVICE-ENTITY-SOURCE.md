@@ -60,11 +60,11 @@ The only source for business facts on websitebuilderadvice.net. Every fact below
 - Process steps and pricing text from the stgeorgewebdesign.com.au home page.
 - Screenshots: six mockups from the st-george-web-design-sydney repo, checked by eye against the client names and converted to WebP.
 
-## 6. Schema (prepared, not published)
+## 6. Schema (published 2026-10-07, at the owner's request)
 
-The pages carry **no JSON-LD**, per the GeoHub prompt ("none until the owner signs off"). Once the address is settled, add one `@graph` to `/web-design-sydney/`, defined once and referenced from the regional hubs:
+`scripts/build.mjs` generates the schema. Each node is defined once on the homepage and referenced by `@id` on the regional hubs.
 
-- `ProfessionalService` `@id` https://websitebuilderadvice.net/#business: name, telephone, `taxID` "96492325357", the `areaServed` regions in §4, `founder` → Person, `sameAs` the GBP URL.
-- `Person` `@id` https://websitebuilderadvice.net/#marcelo-soler: name, jobTitle "Web designer and local SEO specialist", `worksFor` → #business. Make it byte-identical across every network node.
-- Regional hubs: a `WebPage` with `about` → #business, plus a `BreadcrumbList`.
-- Never `aggregateRating` or `review`. Never invent `sameAs` profiles; verify each on the web first.
+- **Homepage:** `WebSite` (#website); `ProfessionalService` (#business: name, telephone, `taxID` 96492325357, a Hurstville NSW 2220 address with no street, 4 `areaServed` regions, `priceRange`, an `OfferCatalog` of the 3 live packages, and `hasMap` and `sameAs` set to the GBP share link); `Person` (#marcelo-soler, `worksFor` #business); plus `WebPage`, `BreadcrumbList` and `FAQPage`.
+- **Regional hubs:** `Service` (provider #business, `areaServed` set to the region, a $500 offer), plus `WebPage`, `BreadcrumbList` and `FAQPage`.
+- **Build checks:** the JSON-LD parses, has no `aggregateRating` or `review`, and every FAQ question and answer also appears on the page.
+- **Not added yet:** Person `sameAs` profiles such as LinkedIn. Add them only once each one is verified live. A street address can go in once the GBP address is confirmed. Make the Person block byte-identical across every network node.

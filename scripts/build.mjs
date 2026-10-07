@@ -561,6 +561,7 @@ function page(pg) {
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" />
 <link rel="stylesheet" href="/css/styles.css?v=2" />
 <script src="/js/main.js?v=2" defer></script>
+<!--SCHEMA-->
 </head>
 <body>
 ${header(pg)}
@@ -593,8 +594,8 @@ const A_RULES = (linkWcag, linkOaic) => `<p>Builds use mobile-first layouts, cle
 const PAGES = [
   {
     key: "sydney",
-    title: "Website Design Sydney from $500 | Website Builder Sydney",
-    description: "Freelance website design for Sydney small businesses by Marcelo Soler. Fast, mobile-first sites from $500, built in 1 day. St George, Bankstown, Sutherland Shire and the CBD.",
+    title: "Website Builder Sydney | $500 Websites Built in 1 Day",
+    description: "Website Builder Sydney: fast, mobile-first websites for Sydney small businesses from $500, live in 1 business day. By freelance web designer Marcelo Soler.",
     pill: "Website design Sydney · Hurstville based",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">Sydney Small Businesses</span>',
     lede: "Marcelo Soler designs and builds fast, mobile-first websites for tradies, clinics, cafés and professional firms across southern Sydney and the CBD, so customers can call, book or ask for a quote on their first visit.",
@@ -650,8 +651,8 @@ const PAGES = [
   },
   {
     key: "stgeorge",
-    title: "Web Design Hurstville & St George | Website Builder Sydney",
-    description: "Website design for Hurstville, Kogarah, Rockdale and Bayside businesses. Hurstville-based freelancer Marcelo Soler builds fast, mobile-first sites from $500 in 1 day.",
+    title: "Website Builder Sydney: St George & Bayside Web Design",
+    description: "Website Builder Sydney is based in Hurstville, building fast websites for Kogarah, Rockdale and Bayside businesses. From $500, live in 1 business day.",
     pill: "Web design St George &amp; Bayside · Hurstville",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">St George &amp; Bayside Businesses</span>',
     lede: "Website Builder Sydney is based in Hurstville. Marcelo Soler builds fast, mobile-first sites for the way St George and Bayside businesses win customers: restaurants and retailers around Forest Road, practices near St George Hospital, and trades and freight firms from Rockdale to Mascot.",
@@ -712,8 +713,8 @@ const PAGES = [
   },
   {
     key: "bankstown",
-    title: "Web Design Canterbury-Bankstown | Website Builder Sydney",
-    description: "Website design for Bankstown, Campsie, Lakemba and Padstow businesses. Freelancer Marcelo Soler builds fast, mobile-first sites for food, clinics and trades from $500.",
+    title: "Website Builder Sydney: Canterbury-Bankstown Web Design",
+    description: "Website Builder Sydney builds fast, mobile-first websites for Bankstown, Campsie, Lakemba and Padstow food, clinic and trade businesses. From $500.",
     pill: "Web design Canterbury-Bankstown",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">Canterbury-Bankstown Businesses</span>',
     lede: "From Chapel Road in Bankstown to Haldon Street in Lakemba and the Padstow industrial area, Canterbury-Bankstown runs on family businesses, food, clinics and trades. Marcelo Soler builds them fast, mobile-first websites that turn a phone search into a call.",
@@ -776,8 +777,8 @@ const PAGES = [
   },
   {
     key: "sutherland",
-    title: "Web Design Sutherland Shire & Cronulla | Website Builder Sydney",
-    description: "Website design for Cronulla, Miranda, Caringbah and Taren Point businesses. Marcelo Soler builds fast, mobile-first Sutherland Shire websites from $500, built in 1 day.",
+    title: "Website Builder Sydney: Sutherland Shire Web Design",
+    description: "Website Builder Sydney builds fast, mobile-first websites for Cronulla, Miranda, Caringbah and Taren Point businesses. From $500, live in 1 day.",
     pill: "Web design Sutherland Shire",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">Sutherland Shire Businesses</span>',
     lede: "Cronulla cafés and gyms, Taren Point workshops and trades from Miranda to Engadine all need a website that works on a phone and gets the enquiry. Marcelo Soler builds them, starting with a $500 one-page site live in 1 business day.",
@@ -837,8 +838,8 @@ const PAGES = [
   },
   {
     key: "cbd",
-    title: "Web Design Sydney CBD & Inner City | Website Builder Sydney",
-    description: "Website design for Sydney CBD, Surry Hills, Pyrmont and Haymarket businesses. Freelancer Marcelo Soler builds fast, credible websites from $500, built in 1 day.",
+    title: "Website Builder Sydney: CBD & Inner-City Web Design",
+    description: "Website Builder Sydney builds fast, credible websites for CBD, Surry Hills, Pyrmont and Haymarket businesses. From $500, live in 1 business day.",
     pill: "Web design Sydney CBD &amp; inner city",
     h1: 'Website Design &amp; Builds for <span class="gradient-text">Sydney CBD &amp; Inner-City Businesses</span>',
     lede: "Professional firms around Martin Place, cafés and studios in Surry Hills and startups near Central and Pyrmont all compete with much bigger marketing budgets. Marcelo Soler builds them fast, credible websites, starting with a $500 one-page site live in 1 business day.",
@@ -906,6 +907,117 @@ const PAGES = [
   },
 ];
 
+// Schema (JSON-LD) -----------------------------------------------------------
+// Define once on the homepage, reference by @id on the regional hubs.
+// No aggregateRating or review: there are no on-site reviews to mark up.
+const ID = {
+  site: `${ORIGIN}/#website`,
+  business: `${ORIGIN}/#business`,
+  person: `${ORIGIN}/#marcelo-soler`,
+};
+const GBP_CID = BIZ.gbp; // the share link supplied by the owner, which redirects to the GBP listing
+const AREAS = {
+  stgeorge: "St George and Bayside, Sydney NSW",
+  bankstown: "Canterbury-Bankstown, Sydney NSW",
+  sutherland: "Sutherland Shire, Sydney NSW",
+  cbd: "Sydney CBD and inner city, Sydney NSW",
+};
+const plain = (h) => h.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+const ref = (id) => ({ "@id": id });
+const digits = (s) => s.replace(/[^0-9]/g, "");
+
+function schema(pg) {
+  const url = ORIGIN + pg.path;
+  const graph = [];
+  if (pg.key === "sydney") {
+    graph.push(
+      { "@type": "WebSite", "@id": ID.site, url: `${ORIGIN}/`, name: BIZ.name, inLanguage: "en-AU", publisher: ref(ID.business) },
+      {
+        "@type": "ProfessionalService",
+        "@id": ID.business,
+        name: BIZ.name,
+        url: `${ORIGIN}/`,
+        description: "Freelance website design and builds for Sydney small businesses, from $500 one-page sites delivered live in 1 business day to custom WordPress websites.",
+        telephone: BIZ.tel,
+        image: `${ORIGIN}/images/favicon.svg`,
+        logo: `${ORIGIN}/images/favicon.svg`,
+        priceRange: "$500 to $5,000",
+        taxID: "96492325357",
+        address: { "@type": "PostalAddress", addressLocality: "Hurstville", addressRegion: "NSW", postalCode: "2220", addressCountry: "AU" },
+        areaServed: Object.values(AREAS).map((name) => ({ "@type": "Place", name })),
+        founder: ref(ID.person),
+        employee: ref(ID.person),
+        hasMap: GBP_CID,
+        sameAs: [GBP_CID],
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Website packages",
+          itemListElement: PLANS.map((p) => ({
+            "@type": "Offer",
+            name: p.name,
+            description: p.text,
+            priceCurrency: "AUD",
+            ...(p.price.startsWith("from")
+              ? { priceSpecification: { "@type": "PriceSpecification", minPrice: digits(p.price), priceCurrency: "AUD" } }
+              : { price: digits(p.price) }),
+          })),
+        },
+      },
+      {
+        "@type": "Person",
+        "@id": ID.person,
+        name: BIZ.person,
+        jobTitle: "Founder, web designer and local SEO specialist",
+        worksFor: ref(ID.business),
+        knowsAbout: ["Website design", "Web development", "Local SEO", "Landing pages", "Google Ads landing pages", "WordPress", "Brand design", "Google Business Profile"],
+        url: `${ORIGIN}/#about`,
+      },
+    );
+  } else {
+    graph.push({
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: `Website design in ${pg.label}`,
+      serviceType: "Website design",
+      provider: ref(ID.business),
+      areaServed: { "@type": "Place", name: AREAS[pg.key] },
+      offers: { "@type": "Offer", price: "500", priceCurrency: "AUD", description: "Single Landing AI Site, delivered live in 1 business day" },
+    });
+  }
+  graph.push(
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: pg.title,
+      description: pg.description,
+      inLanguage: "en-AU",
+      isPartOf: ref(ID.site),
+      about: ref(ID.business),
+      breadcrumb: ref(`${url}#breadcrumb`),
+      dateModified: BUILD_DATE,
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Sydney", item: `${ORIGIN}/` },
+        ...(pg.key === "sydney" ? [] : [{ "@type": "ListItem", position: 2, name: pg.label, item: url }]),
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: pg.faq.map((f) => ({
+        "@type": "Question",
+        name: plain(f.q),
+        acceptedAnswer: { "@type": "Answer", text: plain(f.a) },
+      })),
+    },
+  );
+  return { "@context": "https://schema.org", "@graph": graph };
+}
+
 // Build ----------------------------------------------------------------------
 for (const pg of PAGES) {
   Object.assign(pg, P[pg.key]);
@@ -914,7 +1026,8 @@ for (const pg of PAGES) {
   const html = page(pg)
     .replace(/&(?![a-zA-Z][a-zA-Z0-9]*;|#\d+;)/g, "&amp;")
     .replace(/[ \t]+$/gm, "")
-    .replace(/\n{3,}/g, "\n\n");
+    .replace(/\n{3,}/g, "\n\n")
+    .replace("<!--SCHEMA-->", () => `<script type="application/ld+json">\n${JSON.stringify(schema(pg), null, 2).replace(/</g, "\\u003c")}\n</script>`);
   writeFileSync(out, html);
 }
 
@@ -934,7 +1047,19 @@ for (const pg of PAGES) {
   const where = pg.path;
   const h1 = (html.match(/<h1[\s>]/g) || []).length;
   if (h1 !== 1) problems.push(`${where}: ${h1} h1 elements`);
-  if (/\{\{|\}\}|TODO/.test(html)) problems.push(`${where}: leftover {{ }} or TODO`);
+  const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  if (!ld) problems.push(`${where}: no JSON-LD`);
+  else {
+    const data = JSON.parse(ld[1]);
+    if (/aggregateRating|"review"/i.test(ld[1])) problems.push(`${where}: review markup in schema`);
+    const faqNode = data["@graph"].find((n) => n["@type"] === "FAQPage");
+    const visible = html.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ");
+    for (const q of faqNode.mainEntity) {
+      if (!visible.includes(q.name)) problems.push(`${where}: FAQ question not on page: ${q.name}`);
+      if (!visible.includes(q.acceptedAnswer.text.slice(0, 60))) problems.push(`${where}: FAQ answer not on page: ${q.name}`);
+    }
+  }
+  if (/\{\{|\}\}|TODO/.test(html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, ""))) problems.push(`${where}: leftover {{ }} or TODO`);
   if (/—/.test(html)) problems.push(`${where}: em dash in copy`);
   for (const img of html.match(/<img [^>]+>/g) || []) {
     if (!/ alt="[^"]+"/.test(img) || !/ width="\d+"/.test(img) || !/ height="\d+"/.test(img)) problems.push(`${where}: image missing alt/size ${img}`);
