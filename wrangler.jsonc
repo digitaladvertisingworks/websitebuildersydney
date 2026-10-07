@@ -1,0 +1,12 @@
+{
+  // Static-assets-only Worker for Website Builder Sydney (websitebuilderadvice.net).
+  // No Worker script ("main"): Cloudflare serves the repo root directly,
+  // honouring _headers and _redirects. Deploy: npx wrangler deploy
+  "name": "websitebuildersydney",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}
