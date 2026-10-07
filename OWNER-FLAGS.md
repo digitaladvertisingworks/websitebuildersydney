@@ -4,8 +4,8 @@ Settle these before the site goes live. In the HTML, `data-flag="new copy: owner
 
 ## Launch blockers
 
-1. **Email mailbox.** The form sends to `start@websitebuilderadvice.net`, which doesn't exist yet. Create the mailbox, or name the address to use, before launch. Otherwise briefs are lost.
-2. **Form handler.** The quote form uses a plain `mailto:` action. That works without JavaScript, but it depends on the visitor having an email app. To capture every lead, connect a handler (for example a Cloudflare Worker or Formspree) and update the CSP `form-action` in `_headers`.
+1. **Email mailbox.** The quote form now posts to Web3Forms (the FP Web Design key), so briefs reach that key's inbox. The address shown on the pages, `start@websitebuilderadvice.net`, still doesn't exist: create it, or tell me which address to show.
+2. **Form handler: done.** The form uses Web3Forms with access key 3ab512ef… (shared with webdesignparramatta.sydney), with in-page success and error messages and a honeypot spam check. For separate lead tracking, create a key just for this site and swap `BIZ.formKey` in `scripts/build.mjs`.
 3. **Domain and DNS.** websitebuilderadvice.net doesn't resolve. Canonicals assume `https://websitebuilderadvice.net` (non-www). Confirm what the server and SSL actually serve before launch.
 4. **Register the business name "Website Builder Sydney" with ASIC** if it isn't already. Your ABN is a sole trader ABN in your own name (Marcelo Andres Soler), and trading under any other name requires registration on the Business Names Register. I couldn't check the register from here. The pages show ABN 96 492 325 357 and "Marcelo Andres Soler (sole trader)".
 

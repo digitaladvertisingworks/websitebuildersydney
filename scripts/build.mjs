@@ -27,6 +27,8 @@ const BIZ = {
   abn: "96 492 325 357",
   abr: "https://abr.business.gov.au/ABN/View?abn=96492325357",
   legal: "Marcelo Andres Soler (sole trader)",
+  // Web3Forms public access key (same inbox as FP Web Design, webdesignparramatta.sydney).
+  formKey: "3ab512ef-d715-4d12-b27f-cfa71083d6ed",
 };
 // The ABR link sits on the same 2 pages as the GBP link (40% domain cap).
 const abnText = (pg, prefix = "ABN ") => (pg.gbp ? ext(BIZ.abr, prefix + BIZ.abn) : prefix + BIZ.abn);
@@ -450,7 +452,12 @@ function ready(pg) {
         <li class="dim">${BIZ.locality} · working ${pg.workingArea}</li>
       </ul>
     </div>
-    <form class="form-card" action="mailto:${BIZ.email}" method="post" enctype="text/plain" aria-label="Website quote request">
+    <form class="form-card" action="https://api.web3forms.com/submit" method="post" aria-label="Website quote request" data-web3forms>
+      <input type="hidden" name="access_key" value="${BIZ.formKey}" />
+      <input type="hidden" name="subject" value="New website brief: ${pg.label} (${BIZ.name})" />
+      <input type="hidden" name="from_name" value="${BIZ.name} website" />
+      <input type="hidden" name="page" value="${ORIGIN}${pg.path}" />
+      <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" aria-hidden="true" />
       <div class="field-row">
         <div class="field"><label for="f-name">Name <span class="req">*</span></label><input id="f-name" name="name" type="text" autocomplete="name" required /></div>
         <div class="field"><label for="f-business">Business</label><input id="f-business" name="business" type="text" autocomplete="organization" /></div>
@@ -467,7 +474,7 @@ function ready(pg) {
       </div>
       <div class="field"><label for="f-msg">About your business <span class="req">*</span></label><textarea id="f-msg" name="message" required placeholder="What you do, where you work and what the website needs to achieve."></textarea></div>
       <button class="btn btn-primary" type="submit">Send my brief</button>
-      <p class="form-note">Sending opens your email app with your brief filled in. Prefer to talk? Call or text ${BIZ.phone}.</p>
+      <p class="form-note" data-form-status role="status" aria-live="polite">Your brief goes straight to Marcelo. Prefer to talk? Call or text ${BIZ.phone}.</p>
     </form>
   </div>
 </section>`;
@@ -552,8 +559,8 @@ function page(pg) {
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" />
-<link rel="stylesheet" href="/css/styles.css?v=1" />
-<script src="/js/main.js" defer></script>
+<link rel="stylesheet" href="/css/styles.css?v=2" />
+<script src="/js/main.js?v=2" defer></script>
 </head>
 <body>
 ${header(pg)}
